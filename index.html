@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Human to Cat</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        html {
+            padding: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="form-group">
+            <input type='text' name='Human Language' id='human'>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" onclick="convertCat()">Human Language => Cat Language</button>
+        <br><br>
+        <button type="button" class="btn btn-primary" onclick="convertHuman()">Cat Language => Human Language</button>
+        <br>
+        <br>
+        <br>
+        <script src="databasebahasa.js"></script>
+        <script>
+            var humanLanguage = ""
+            var catLanguage = ""
+            var catTranslate = ""
+            var humanTranslate = ""
+            var temp = []
+
+            function convertCat() {
+                var humanLanguage = ""
+                var catLanguage = ""
+                var catTranslate = ""
+                var humanTranslate = ""
+                var temp = []
+
+                humanLanguage = document.getElementById('human').value.toUpperCase();
+                for (i = 0; i < humanLanguage.length; i++) {
+                    for (j = 0; j < bahasa.length; j++) {
+                        if (humanLanguage[i] == bahasa[j][0]) {
+                            catTranslate += bahasa[j][1] + " ";
+                        }
+                    }
+                }
+
+                const cardDiv = document.createElement('div');
+                cardDiv.setAttribute('class', 'card text-white bg-success mb-3');
+                cardDiv.setAttribute('style', 'max-width: 20rem;');
+                document.querySelector('center').appendChild(cardDiv);
+
+                const cardHeader = document.createElement('div');
+                cardHeader.setAttribute('class', 'card-header');
+                cardHeader.innerText = 'Notice';
+                cardDiv.appendChild(cardHeader);
+
+                const cardBody = document.createElement('div');
+                cardBody.setAttribute('class', 'card-body');
+                cardDiv.appendChild(cardBody);
+
+                const cardTitle = document.createElement('h4');
+                cardTitle.setAttribute('class', 'card-title');
+                cardTitle.innerText = 'Translate Results';
+                cardBody.appendChild(cardTitle);
+
+                const cardText = document.createElement('p');
+                cardText.setAttribute('class', 'card-text');
+                cardText.innerText = catTranslate.toLowerCase();
+                cardBody.appendChild(cardText);
+
+            }
+
+            function convertHuman() {
+                var humanLanguage = ""
+                var catLanguage = ""
+                var catTranslate = ""
+                var humanTranslate = ""
+                var temp = []
+                catLanguage = document.getElementById('human').value.toLowerCase();
+                temp = catLanguage.split(" ")
+
+                for (var i = 0; i < temp.length; i++) {
+                    for (var j = 0; j < bahasa.length; j++) {
+                        if (temp[i] === bahasa[j][1]) {
+                            humanTranslate += bahasa[j][0];
+                        }
+                    }
+                }
+
+                const cardDiv = document.createElement('div');
+                cardDiv.setAttribute('class', 'card text-white bg-success mb-3');
+                cardDiv.setAttribute('style', 'max-width: 20rem;');
+                document.querySelector('center').appendChild(cardDiv);
+
+                const cardHeader = document.createElement('div');
+                cardHeader.setAttribute('class', 'card-header');
+                cardHeader.innerText = 'Notice';
+                cardDiv.appendChild(cardHeader);
+
+                const cardBody = document.createElement('div');
+                cardBody.setAttribute('class', 'card-body');
+                cardDiv.appendChild(cardBody);
+
+                const cardTitle = document.createElement('h4');
+                cardTitle.setAttribute('class', 'card-title');
+                cardTitle.innerText = 'Translate Results';
+                cardBody.appendChild(cardTitle);
+
+                const cardText = document.createElement('p');
+                cardText.setAttribute('class', 'card-text');
+                cardText.innerText = humanTranslate.toLowerCase();
+                cardBody.appendChild(cardText);
+            }
+        </script>
+</body>
+
+</html>
